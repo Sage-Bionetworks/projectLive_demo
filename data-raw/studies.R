@@ -1,10 +1,10 @@
 require(magrittr)
 devtools::load_all()
 syn <- create_synapse_login()
-studies <- get_synapse_tbl(syn, "syn16787123")
+studies <- get_synapse_tbl(syn, "syn21918972")
 saveRDS(studies, "studies.RDS")
 store_file_in_synapse(
   "studies.RDS",
-  "syn22281727"
+  "syn24172460"
 )
 
