@@ -20,7 +20,7 @@
           "box1": {
             "title": "Studies",
             "table": "studies_table",
-            "columns": ["studyId"],
+            "columns": ["grantId"],
             "icon": "university"
           },
           "box2": {
@@ -38,7 +38,7 @@
           "box4": {
             "title": "Publications",
             "table": "publications_table",
-            "columns": ["title"],
+            "columns": ["publicationId"],
             "icon": "pencil"
           }
         },

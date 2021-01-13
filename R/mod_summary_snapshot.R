@@ -38,13 +38,6 @@ mod_summary_snapshot_ui <- function(id){
           #includeScript("www/google_analytics.js")),
           
           shinydashboard::box(
-            title = "Funding Partner",
-            width = 12,
-            solidHeader = T,
-            status = "primary",
-            shiny::textOutput(ns('funding_agency'))
-          ),
-          shinydashboard::box(
             title = "Overview",
             status = "primary",
             solidHeader = TRUE,
@@ -118,6 +111,7 @@ mod_summary_snapshot_server <- function(
       "overview_boxes",
       "box1"
     )
+    print(group_object())
     create_info_box(param_list, group_object())
   })
   
