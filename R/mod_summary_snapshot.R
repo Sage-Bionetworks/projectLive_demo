@@ -46,7 +46,7 @@ mod_summary_snapshot_ui <- function(id){
             shiny::fluidRow(
               shinydashboard::infoBoxOutput(ns('box1'), width = 3),
               shinydashboard::infoBoxOutput(ns('box2'), width = 3),
-              shinydashboard::infoBoxOutput(ns('box3'), width = 3),
+              # shinydashboard::infoBoxOutput(ns('box3'), width = 3),
               shinydashboard::infoBoxOutput(ns('box4'), width = 3)
             )
           ),
@@ -127,19 +127,19 @@ mod_summary_snapshot_server <- function(
     )
     create_info_box(param_list, group_object())
   })
-  
-  output$box3 <- shinydashboard::renderInfoBox({
-    shiny::req(data_config, group_object())
-    param_list <- purrr::pluck(
-      data_config,
-      "modules",
-      "summary_snapshot",
-      "outputs",
-      "overview_boxes",
-      "box3"
-    )
-    create_info_box(param_list, group_object())
-  })
+  # 
+  # output$box3 <- shinydashboard::renderInfoBox({
+  #   shiny::req(data_config, group_object())
+  #   param_list <- purrr::pluck(
+  #     data_config,
+  #     "modules",
+  #     "summary_snapshot",
+  #     "outputs",
+  #     "overview_boxes",
+  #     "box3"
+  #   )
+  #   create_info_box(param_list, group_object())
+  # })
   
   output$box4 <- shinydashboard::renderInfoBox({
     shiny::req(data_config, group_object())
@@ -271,7 +271,7 @@ mod_summary_snapshot_server <- function(
     
     data <- data %>% 
       format_plot_data_with_param_list(param_list) %>% 
-      dplyr::mutate("Study Name" = stringr::str_trunc(.data$`Study Name`, 40)) %>% 
+      dplyr::mutate("Grant Name" = stringr::str_trunc(.data$`Grant Name`, 40)) %>% 
       create_plot_count_df(
         factor_columns   = c(param_list$plot$x), 
         complete_columns = c(param_list$plot$x, param_list$plot$facet)

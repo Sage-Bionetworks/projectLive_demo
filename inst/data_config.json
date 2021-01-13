@@ -26,7 +26,7 @@
           "box2": {
             "title": "Files",
             "table": "files_table",
-            "columns": ["id"],
+            "columns": ["datasetId"],
             "icon": "file"
           },
           "box3": {
@@ -55,7 +55,7 @@
               "name": "consortium",
               "display_name": "Consortium",
               "na_replace": "Not Applicable",
-              "type": "character"
+              "type": "list:character"
             },
             {
               "name": "accessType",
@@ -81,41 +81,30 @@
               "type": "integer"
             },
             {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "character",
+              "name": "grantName",
+              "display_name": "Grant Name",
+              "type": "list:character",
               "na_replace": "Not Applicable"
             },
             {
-              "name": "dataType",
-              "display_name": "Data Type",
-              "type": "character",
-              "replace_values": {
-                "drugScreen": "Drug Screening", 
-                "drugCombinationScreen": "Drug Screening",
-                "immunofluorescence": "Immunofluorescence",
-                "genomicVariants": "Genomic Variants",
-                "geneExpression": "Gene Expression",
-                "cellularPhysiology": "Cellular Physiology",
-                "chromatinActivity": "Chromatin Activity"
-              },
-              "na_replace": "Other",
-              "default_replace": "Other"
+              "name": "theme",
+              "display_name": "Theme",
+              "type": "character"
             }
           ],
           "plot": {
-            "x": "Data Type",
-            "fill": "Study Name",
+            "x": "Theme",
+            "fill": "Grant Name",
             "facet": "Year"
           },
           "tooltips": ["count", "fill"]
         },
         "merged_table": {            
-          "join_column" : "studyName",
+          "join_column" : "grantId",
           "tables": ["studies_table", "files_table"],
           "columns": [
-            ["studyName", "consortium"],
-            ["studyName", "resourceType", "year", "assay"]
+            ["grantId", "consortium"],
+            ["grantId", "year", "assay", "grantName"]
           ]
         },
         "file_upload_timeline":{
@@ -124,14 +113,14 @@
           "filter_column": "consortium",
           "columns": [
             {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "character",
+              "name": "grantName",
+              "display_name": "Grant Name",
+              "type": "list:character",
               "na_replace": "pendingAnnotation"
             },
             {
-              "name": "resourceType",
-              "display_name": "Resource Type",
+              "name": "assay",
+              "display_name": "Assay",
               "type": "character",
               "na_replace": "pendingAnnotation"
             },
@@ -142,9 +131,9 @@
             }
           ],
           "plot": {
-            "x": "Study Name",
+            "x": "Grant Name",
             "y": "Count",
-            "fill": "Resource Type",
+            "fill": "Assay",
             "facet": "Year"
           },
           "tooltips": ["Count", "fill"]
