@@ -89,7 +89,7 @@
             {
               "name": "theme",
               "display_name": "Theme",
-              "type": "character"
+              "type": "list:character"
             }
           ],
           "plot": {
@@ -121,7 +121,7 @@
             {
               "name": "assay",
               "display_name": "Assay",
-              "type": "character",
+              "type": "list:character",
               "na_replace": "pendingAnnotation"
             },
             {
