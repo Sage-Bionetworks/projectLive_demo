@@ -26,13 +26,13 @@
           "box2": {
             "title": "Files",
             "table": "files_table",
-            "columns": ["datasetId"],
+            "columns": ["ROW_ID"],
             "icon": "file"
           },
           "box3": {
-            "title": "Samples",
+            "title": "Datasets",
             "table": "files_table",
-            "columns": ["individualID", "specimenID"],
+            "columns": ["datasetId"],
             "icon": "file"
           },
           "box4": {
