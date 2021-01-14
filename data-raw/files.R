@@ -1,22 +1,15 @@
 require(magrittr)
 devtools::load_all()
 syn <- create_synapse_login()
-studies <- get_synapse_tbl(syn, "syn21918972") %>% 
-  dplyr::select("grantId", "grantType")
-datasets <-  get_synapse_tbl(syn, "syn21889931") %>% 
-  dplyr::select("id", "createdOn")
-files <- get_synapse_tbl(syn, "syn21897968") %>% 
-  dplyr::mutate(
-    "accessType" = "PUBLIC",
-    # "assay" = purrr::map_chr(.data$assay, purrr::pluck, 1),
-    # "theme" = purrr::map_chr(.data$theme, purrr::pluck, 1),
-    "grantId" = purrr::map_chr(.data$grantId, purrr::pluck, 1)
+files <- get_synapse_tbl(syn, "syn9630847") %>% 
+  dplyr::select(
+    "id", "createdOn", "dataset", "assay", "Theme", "consortium", "grantName"
   ) %>% 
-  dplyr::left_join(studies) %>% 
-  dplyr::left_join(datasets, by = c("datasetId" = "id")) %>% 
+  dplyr::mutate(
+    "accessType" = "PUBLIC"
+  ) %>% 
   format_date_columns()
   
-
 saveRDS(files, "files.RDS")
 store_file_in_synapse(
   "files.RDS",

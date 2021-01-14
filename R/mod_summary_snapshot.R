@@ -189,7 +189,7 @@ mod_summary_snapshot_server <- function(
     
     data <- group_object() %>% 
       purrr::pluck(param_list$table) %>% 
-      tidyr::unnest(cols = "theme") %>% 
+      # tidyr::unnest(cols = "theme") %>% 
       format_plot_data_with_param_list(param_list) 
       
     shiny::validate(shiny::need(nrow(data) > 0, param_list$empty_table_message))
@@ -201,36 +201,36 @@ mod_summary_snapshot_server <- function(
     ) 
   })
   
-  merged_table <- shiny::reactive({
-
+  # merged_table <- shiny::reactive({
+  # 
+  #   shiny::req(group_object(), data_config)
+  # 
+  #   param_list <- purrr::pluck(
+  #     data_config,
+  #     "modules",
+  #     "summary_snapshot",
+  #     "outputs",
+  #     "merged_table"
+  #   )
+  # 
+  #   create_merged_table_with_param_list(group_object(), param_list)
+  # })
+  
+  output$file_upload_timeline_filter_ui <- shiny::renderUI({
+    
     shiny::req(group_object(), data_config)
-
+    
     param_list <- purrr::pluck(
       data_config,
       "modules",
       "summary_snapshot",
       "outputs",
-      "merged_table"
-    )
-
-    create_merged_table_with_param_list(group_object(), param_list)
-  })
-  
-  output$file_upload_timeline_filter_ui <- shiny::renderUI({
-    
-    shiny::req(merged_table(), data_config)
-    
-    column <- purrr::pluck(
-      data_config,
-      "modules",
-      "summary_snapshot",
-      "outputs",
-      "file_upload_timeline",
-      "filter_column"
+      "file_upload_timeline"
     ) 
     
-    choices <- merged_table() %>% 
-      dplyr::pull(column) %>% 
+    choices <- group_object() %>% 
+      purrr::pluck(param_list$table) %>% 
+      dplyr::pull(param_list$filter_column) %>% 
       unlist(.) %>% 
       unique() %>% 
       sort() %>% 
@@ -246,7 +246,7 @@ mod_summary_snapshot_server <- function(
   output$file_upload_timeline <- plotly::renderPlotly({
     
     shiny::req(
-      merged_table(), 
+      group_object(), 
       data_config, 
       input$file_upload_timeline_filter_value
     )
@@ -261,13 +261,15 @@ mod_summary_snapshot_server <- function(
     
 
     if (input$file_upload_timeline_filter_value != "All"){
-      data <- merged_table() %>% 
+      data <- group_object() %>% 
+        purrr::pluck(param_list$table) %>% 
         filter_list_column(
           param_list$filter_column, 
           input$file_upload_timeline_filter_value
         )
     } else {
-      data <- merged_table() 
+      data <- group_object() %>% 
+        purrr::pluck(param_list$table)
     }
     
     data <- data %>% 

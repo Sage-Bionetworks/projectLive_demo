@@ -3,6 +3,9 @@
     "files_table": {
       "synapse_id": "syn24172462"
     },
+    "datasets_table": {
+      "synapse_id": "syn24173640"
+    },
     "publications_table": {
       "synapse_id": "syn24172464"
     },
@@ -26,12 +29,12 @@
           "box2": {
             "title": "Files",
             "table": "files_table",
-            "columns": ["ROW_ID"],
+            "columns": ["id"],
             "icon": "file"
           },
           "box3": {
             "title": "Datasets",
-            "table": "files_table",
+            "table": "datasets_table",
             "columns": ["datasetId"],
             "icon": "file"
           },
@@ -87,7 +90,7 @@
               "na_replace": "Not Applicable"
             },
             {
-              "name": "theme",
+              "name": "Theme",
               "display_name": "Theme",
               "type": "list:character"
             }
@@ -99,17 +102,9 @@
           },
           "tooltips": ["count", "fill"]
         },
-        "merged_table": {            
-          "join_column" : "grantId",
-          "tables": ["studies_table", "files_table"],
-          "columns": [
-            ["grantId", "consortium"],
-            ["grantId", "year", "assay", "grantName"]
-          ]
-        },
         "file_upload_timeline":{
           "empty_table_message": "The studies have not uploaded any files yet. Please check back later.",
-          "table": "merged_table",
+          "table": "files_table",
           "filter_column": "consortium",
           "columns": [
             {
