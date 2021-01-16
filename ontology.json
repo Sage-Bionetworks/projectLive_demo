@@ -5,10 +5,12 @@
     "level": "1",
     "description": "This is the organization who funded a certain project or scientific study through a grant mechanism. Examples include NCI, NIH, CTF, DOD, NTAP etc.",
     "related_terms": ["Organization", "Partner"]
+    "schema_term": "fundingAgency"
   }
   "Initiative": {
     "level": "2",
     "description": "A funding organization groups certain funded studies according to themes, or research question, a dedicated award, or RFA call. These are called initiatives.",
     "related_terms": ["Consortium", "Program"]
+    "schema_term" : "initiative"
   }
 }
