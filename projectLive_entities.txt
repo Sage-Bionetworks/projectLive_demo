@@ -1,0 +1,93 @@
+# projectLive entities
+
+
+## Atomic entities
+
+Basic units of project live, 
+Don’t break down into other entities. 
+Often correspond to a synapse file entity.
+Have their own portals table.
+Common examples include:
+Files
+Publications 
+Tools
+
+### Studies
+
+The basic way of grouping the atomic units.
+Often correspond to a synapse project entity.
+Have their own portals table.
+Aliases:
+Projects
+Grants
+
+### Initiatives
+
+A way of grouping studies together.
+A funding organization groups certain funded studies according to themes, or research question, a dedicated award, or RFA call
+Do not have their own portals table.
+Correspond to a column in the studies portal table.
+Aliases:
+Consortium
+Program
+
+### Funding Agencies
+
+A way of grouping initiatives together.
+This is the organization who funded a certain project or scientific study through a grant mechanism.
+Do not have their own portals table.
+Correspond to a column in the studies portal table.
+Aliases:
+Organization
+Partner
+
+
+## Other possible entities:
+
+### Datasets
+A way of grouping data files together.
+This may be one of the following:
+ a folder containing various data files that are part of the same analysis/experiment (CSBC, NF),
+a zip file containing a collection of data files from a specific experiment or data release date
+or a table containing processed data from multiple specimens used for a single analysis (NF)
+Have their own portals table
+Aliases:
+Data Bundles
+
+### Timelines
+A way of documenting expected data files from a contributor and the associated milestone dates for such data
+This is generally a table with the schema of syn23364404 (NF)
+Not represented in portals but generally has its own table
+Data represented in this table is collected through Data Sharing Plans from individual data contributors
+Aliases:
+Milestones
+Deadlines
+Incoming Data
+
+
+# NF
+
+Uses:
+Files(syn16858331)
+Publications(syn16857542)
+Tools(syn16859448)
+Studies(syn16787123)
+Datasets(syn16859580)
+Initiatives (as columns in above tables)
+Funding Agencies (as columns in above tables)
+Incoming Data (syn23364404)
+
+# CSBC
+
+Uses:
+Files(syn9630847)
+Publications(syn21868591)
+Tools(syn21930566)
+Datasets(syn21897968)
+Grants(syn21918972)
+
+# INCLUDE
+
+# HTAN
+
+# IMCORE
