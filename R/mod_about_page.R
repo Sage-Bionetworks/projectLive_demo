@@ -33,39 +33,14 @@ mod_about_page_ui <- function(id){
           # </script>
           # "),
           #includeScript("www/google_analytics.js")),
-          
-          # box(title = "About",
-          #     width = 12,
-          #     solidHeader = T,
-          #     status = "primary",
-          #     shiny::htmlOutput(ns('about'))
-          #     #DT::dataTableOutput(ns('study_table'))
-          # ),
-          
-          # box(title = "About",
-          #     status = "primary",
-          #     solidHeader = F,
-          #     width = 12,
-          #     collapsible = FALSE,
           shinydashboard::infoBoxOutput(ns('about'), width = 12),
           shinydashboard::box(
             title = "Funding Partner",
             width = 12,
             solidHeader = T,
             status = "primary",
-            # shiny::uiOutput(ns("group_selection_ui")),
             shiny::textOutput(ns('group'))
-            #DT::dataTableOutput(ns('study_table'))
           )
-          # shiny::actionButton(
-          #   inputId ='back_to_portal', 
-          #   label="Back to the NF Data Portal", 
-          #   icon = shiny::icon("map-marker-alt"),
-          #   lib = "font-awesome",
-          #   class ="btn btn-primary btn-lg btn-block",
-          #   onclick ="window.open('https://nf.synapse.org/', '_blank')"
-          # )
-          
         ))))
 }
     
@@ -111,19 +86,11 @@ mod_about_page_server <- function(input, output, session, syn, data_config){
       purrr::map(format_date_columns)
   })
 
-  # filtered_tables <- shiny::reactive({
-  #   shiny::req(tables(), input$selected_group)
-  #   purrr::map(
-  #     tables(),
-  #     filter_list_column,
-  #     data_config$team_filter_column,
-  #     input$selected_group
-  #   )
-  # })
-
-  group_object <- shiny::reactive({
+  data <- shiny::reactive({
     shiny::req(tables())
-    c(tables())
+    list(
+      "tables" = tables()
+    ) 
   })
 
 }

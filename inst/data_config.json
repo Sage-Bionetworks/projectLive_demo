@@ -1,52 +1,53 @@
 {
   "data_files": {
-    "files_table": {
+    "files": {
       "synapse_id": "syn24172462"
     },
-    "datasets_table": {
+    "datasets": {
       "synapse_id": "syn24173640"
     },
-    "publications_table": {
+    "publications": {
       "synapse_id": "syn24172464"
     },
-    "studies_table": {
+    "studies": {
       "synapse_id": "syn24172465"
     },
-    "tools_table": {
+    "tools": {
       "synapse_id": "syn24172466"
     }
   },
   "modules": {
     "summary_snapshot": {
       "outputs": {
+        "header_text": "Please hover your cursor over the plots to view more information. You can also zoom into parts of the plot.",
         "overview_boxes": {
           "box1": {
             "title": "Studies",
-            "table": "studies_table",
+            "table": "studies",
             "columns": ["grantId"],
             "icon": "university"
           },
           "box2": {
             "title": "Files",
-            "table": "files_table",
+            "table": "files",
             "columns": ["id"],
             "icon": "file"
           },
           "box3": {
             "title": "Datasets",
-            "table": "datasets_table",
+            "table": "datasets",
             "columns": ["datasetId"],
             "icon": "file"
           },
           "box4": {
             "title": "Publications",
-            "table": "publications_table",
+            "table": "publications",
             "columns": ["publicationId"],
             "icon": "pencil"
           }
         },
         "consortium_activity": {
-          "table": "files_table",
+          "table": "files",
           "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
           "columns": [
             {
@@ -75,7 +76,7 @@
           "tooltips": ["count", "fill"]
         },
         "resources_generated": {
-          "table": "files_table",
+          "table": "files",
           "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
           "columns": [
             {
@@ -104,14 +105,15 @@
         },
         "file_upload_timeline":{
           "empty_table_message": "The studies have not uploaded any files yet. Please check back later.",
-          "table": "files_table",
+          "table": "files",
           "filter_column": "consortium",
           "columns": [
             {
               "name": "grantName",
               "display_name": "Grant Name",
               "type": "list:character",
-              "na_replace": "pendingAnnotation"
+              "na_replace": "pendingAnnotation",
+              "truncate": 40
             },
             {
               "name": "assay",
