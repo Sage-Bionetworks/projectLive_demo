@@ -1,24 +1,21 @@
 {
-  "team_table": {
-    "synapse_id": "syn22279138",
-    "team_column": "TeamID",
-    "group_column": "Permission List"
-  },
   "data_files": {
     "files_table": {
-      "synapse_id": "syn22282675"
+      "synapse_id": "syn24172462"
+    },
+    "datasets_table": {
+      "synapse_id": "syn24173640"
     },
     "publications_table": {
-      "synapse_id": "syn22282673"
+      "synapse_id": "syn24172464"
     },
     "studies_table": {
-      "synapse_id": "syn22282670"
+      "synapse_id": "syn24172465"
     },
     "tools_table": {
-      "synapse_id": "syn22282674"
+      "synapse_id": "syn24172466"
     }
   },
-  "team_filter_column": "fundingAgency",
   "modules": {
     "summary_snapshot": {
       "outputs": {
@@ -26,7 +23,7 @@
           "box1": {
             "title": "Studies",
             "table": "studies_table",
-            "columns": ["studyId"],
+            "columns": ["grantId"],
             "icon": "university"
           },
           "box2": {
@@ -36,15 +33,15 @@
             "icon": "file"
           },
           "box3": {
-            "title": "Samples",
-            "table": "files_table",
-            "columns": ["individualID", "specimenID"],
+            "title": "Datasets",
+            "table": "datasets_table",
+            "columns": ["datasetId"],
             "icon": "file"
           },
           "box4": {
             "title": "Publications",
             "table": "publications_table",
-            "columns": ["title"],
+            "columns": ["publicationId"],
             "icon": "pencil"
           }
         },
@@ -61,7 +58,7 @@
               "name": "consortium",
               "display_name": "Consortium",
               "na_replace": "Not Applicable",
-              "type": "character"
+              "type": "list:character"
             },
             {
               "name": "accessType",
@@ -87,58 +84,39 @@
               "type": "integer"
             },
             {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "character",
+              "name": "grantName",
+              "display_name": "Grant Name",
+              "type": "list:character",
               "na_replace": "Not Applicable"
             },
             {
-              "name": "dataType",
-              "display_name": "Data Type",
-              "type": "character",
-              "replace_values": {
-                "drugScreen": "Drug Screening", 
-                "drugCombinationScreen": "Drug Screening",
-                "immunofluorescence": "Immunofluorescence",
-                "genomicVariants": "Genomic Variants",
-                "geneExpression": "Gene Expression",
-                "cellularPhysiology": "Cellular Physiology",
-                "chromatinActivity": "Chromatin Activity"
-              },
-              "na_replace": "Other",
-              "default_replace": "Other"
+              "name": "Theme",
+              "display_name": "Theme",
+              "type": "list:character"
             }
           ],
           "plot": {
-            "x": "Data Type",
-            "fill": "Study Name",
+            "x": "Theme",
+            "fill": "Grant Name",
             "facet": "Year"
           },
           "tooltips": ["count", "fill"]
         },
-        "merged_table": {            
-          "join_column" : "studyName",
-          "tables": ["studies_table", "files_table"],
-          "columns": [
-            ["studyName", "consortium"],
-            ["studyName", "resourceType", "year", "assay"]
-          ]
-        },
         "file_upload_timeline":{
           "empty_table_message": "The studies have not uploaded any files yet. Please check back later.",
-          "table": "merged_table",
+          "table": "files_table",
           "filter_column": "consortium",
           "columns": [
             {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "character",
+              "name": "grantName",
+              "display_name": "Grant Name",
+              "type": "list:character",
               "na_replace": "pendingAnnotation"
             },
             {
-              "name": "resourceType",
-              "display_name": "Resource Type",
-              "type": "character",
+              "name": "assay",
+              "display_name": "Assay",
+              "type": "list:character",
               "na_replace": "pendingAnnotation"
             },
             {
@@ -148,374 +126,12 @@
             }
           ],
           "plot": {
-            "x": "Study Name",
-            "y": "Count",
-            "fill": "Resource Type",
-            "facet": "Year"
-          },
-          "tooltips": ["Count", "fill"]
-        }
-      }
-    },
-    "file_status": {
-       "outputs": {
-         "publication_status": {
-           "table": "publications_table",
-           "columns": [
-             {
-              "name": "year",
-              "display_name": "Year",
-              "type": "integer"
-             },
-             {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "list:character"
-             }
-           ],
-           "plot": {
-             "x": "Year",
-             "fill": "Study Name"
-           },
-           "tooltips": ["count", "fill"]
-         },
-         "publication_disease": {
-           "table": "publications_table",
-           "columns": [
-             {
-              "name": "year",
-              "display_name": "Year",
-              "type": "integer"
-             },
-             {
-              "name": "manifestation",
-              "display_name": "Manifestation",
-              "type": "list:character",
-              "na_replace": "None Listed"
-             }
-           ],
-           "plot": {
-             "x": "Year",
-             "fill": "Manifestation"
-           },
-           "tooltips": ["count", "fill"]
-         }
-       }
-    },
-    "study_summary": {
-      "outputs": {
-        "merged_table": {
-          "filter_column": "studyName",
-          "join_column": "studyName",
-          "tables": [
-            "studies_table",
-            "files_table",
-            "tools_table"
-          ],
-          "columns": [
-            [
-              "studyName",
-              "studyStatus", 
-              "dataStatus", 
-              "studyLeads",
-              "diseaseFocus", 
-              "summary",
-              "consortium",
-              "studyId"
-            ],
-            [
-              "studyName",
-              "individualID",
-              "specimenID", 
-              "assay",
-              "id", 
-              "resourceType",
-              "year", 
-              "month",
-              "tumorType",
-              "species",
-              "projectId"
-            ],
-            ["studyName", "softwareName"]
-          ]
-        },
-        "study_table": {
-          "group_columns": [
-            "studyName", 
-            "studyLeads", 
-            "studyStatus",
-            "dataStatus",
-            "diseaseFocus"
-          ],
-          "count_columns": [
-            "individualID",
-            "specimenID",
-            "assay", 
-            "id", 
-            "softwareName"
-          ],
-          "columns": [
-            {"display_name": "Name", "name": "studyName"},
-            {"display_name": "Leads", "name":"studyLeads", "type": "list:character"}, 
-            {"display_name": "Study Status", "name":"studyStatus"},
-            {"display_name": "Data Status", "name":"dataStatus"}, 
-            {"display_name": "Disease Focus", "name":"diseaseFocus", "type": "list:character"},
-            {"display_name": "Individuals", "name":"individualID"}, 
-            {"display_name": "Specimens", "name":"specimenID"},
-            {"display_name": "Assays", "name":"assay"},
-            {"display_name": "Files", "name":"id"},
-            {"display_name": "Tools", "name":"softwareName"}
-          ],
-          "id_column": "Name"
-        },
-        "annotation_activity": {
-          "table": "merged_table",
-          "empty_table_message": "The investigators have not uploaded any files yet. Please check back later.",
-          "tooltips": ["Count", "fill"],
-          "columns": [
-            {
-              "name": "studyLeads",
-              "display_name": "Study Leads",
-              "type": "list:character",
-              "na_replace": "pendingAnnotation"
-            },
-            {
-              "name": "assay",
-              "display_name": "Assay",
-              "type": "character",
-              "na_replace": "pendingAnnotation"
-            },
-            {
-              "name": "year",
-              "display_name": "Year",
-              "type": "integer"
-            }
-          ],
-          "plot": {
-            "x": "Study Leads",
+            "x": "Grant Name",
             "y": "Count",
             "fill": "Assay",
             "facet": "Year"
-          }
-         },
-        "data_focus": {
-          "columns": [
-            {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "character"
-            },
-            {
-              "name": "assay",
-              "display_name": "Assays Used",
-              "type": "character"
-            },
-            {
-              "name": "resourceType",
-              "display_name": "Resource Added",
-              "type": "character"
-            },
-            {
-              "name": "species",
-              "display_name": "Species Used",
-              "type": "character"
-            },
-            {
-              "name": "tumorType",
-              "display_name": "Tumor Types Investigated",
-              "type": "character"
-            }
-          ],
-          "plot": {
-            "x": "Study Name",
-            "fill": [
-              "Assays Used",
-              "Resource Added",
-              "Species Used",
-              "Tumor Types Investigated"
-            ]
           },
-          "tooltips": ["count", "fill"],
-          "empty_table_message": "The investigators have not uploaded data for this study yet. Please check back later."
-        },
-        "study_timeline": {
-          "columns": [
-            {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "character"
-            },
-            {
-              "name": "resourceType",
-              "display_name": "Resource Type",
-              "type": "character"
-            },
-            {
-              "name": "year",
-              "display_name": "Year",
-              "type": "integer"
-            },
-            {
-              "name": "month",
-              "display_name": "Month",
-              "type": "factor"
-            }
-            
-          ],
-          "plot": {
-            "x": "Study Name",
-            "fill": "Resource Type",
-            "facet": ["Year", "Month"]
-          },
-          "tooltips": ["count", "fill"],
-          "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later."
-        },
-        "publication_status": {
-           "table": "publications_table",
-           "filter_column": "studyName",
-           "columns": [
-             {
-              "name": "year",
-              "display_name": "Year",
-              "type": "integer"
-             },
-             {
-              "name": "studyName",
-              "display_name": "Study Name",
-              "type": "list:character"
-             }
-           ],
-           "plot": {
-             "x": "Year",
-             "fill": "Study Name"
-           },
-           "empty_table_message": "This study has no associated publications yet.",
-           "tooltips": ["count", "fill"]
-        },
-        "study_details": {
-          "columns": [
-            {
-              "name": "studyId",   
-              "type": "character",
-              "display_name": "Unique Study ID"
-            },
-            {
-              "name": "studyStatus",
-              "type": "character",
-              "display_name": "Study Status"
-            },
-            {
-              "name": "dataStatus",
-              "type": "character",
-              "display_name": "Data Status"
-            },
-            {
-              "name": "summary",
-              "type": "character"
-            },
-            {
-              "name": "diseaseFocus",
-              "type": "list:character",
-              "display_name": "Disease Focus"
-            }
-          ]
-        }
-      }
-    },
-    "new_submissions": {
-      "outputs": {
-        "new_files_table": {
-          "date_column": "date",
-          "empty_table_message": "No files uploaded within the selected number of days",
-          "table1": {
-            "columns": [
-              {
-                "display_name": "File Name", 
-                "name": "name",
-                "type": "character"
-              },
-              {
-                "display_name": "Date", 
-                "name": "date",
-                "type": "other"
-              },
-              {
-              "display_name": "Study Name", 
-              "name": "studyName",
-              "type": "character",
-              "na_replace": "Not Annotated"
-            },
-              {
-              "display_name": "Study Leads", 
-              "name": "studyLeads",
-              "type": "list:character",
-              "na_replace": "Not Annotated"
-            },
-              {
-              "display_name": "Parent ID", 
-              "name": "parentId",
-              "type": "character",
-              "na_replace": "Not Annotated"
-            },
-              {
-              "display_name": "Resource Type", 
-              "name": "resourceType",
-              "type": "character",
-              "na_replace": "Not Annotated"
-            },
-              {
-              "display_name": "Assay", 
-              "name": "assay",
-              "type": "character",
-              "na_replace": "Not Annotated"
-            }
-            ]
-          },
-          "table2": {
-            "columns": [
-              {
-                "display_name": "File Name", 
-                "name": "name",
-                "type": "character"
-              },
-              {
-                "display_name": "Date", 
-                "name": "date",
-                "type": "other"
-              },
-              {
-                "display_name": "Study Name", 
-                "name": "studyName",
-                "type": "character",
-                "na_replace": "NA due to older study structure"
-              },
-              {
-                "display_name": "Study Leads", 
-                "name": "studyLeads",
-                "type": "list:character",
-                "na_replace": "NA due to older study structure"
-              },
-              {
-                "display_name": "Parent ID", 
-                "name": "parentId",
-                "type": "character",
-                "na_replace": "Not Annotated"
-                
-              },
-              {
-                "display_name": "Resource Type", 
-                "name": "resourceType",
-                "type": "character",
-                "na_replace": "Not Annotated"
-              },
-              {
-                "display_name": "Assay", 
-                "name": "assay",
-                "type": "character",
-                "na_replace": "Not Annotated"
-              }
-            ]
-          }
+          "tooltips": ["Count", "fill"]
         }
       }
     }

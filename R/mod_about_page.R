@@ -53,14 +53,18 @@ mod_about_page_ui <- function(id){
             width = 12,
             solidHeader = T,
             status = "primary",
-            shiny::uiOutput(ns("group_selection_ui")),
+            # shiny::uiOutput(ns("group_selection_ui")),
             shiny::textOutput(ns('group'))
             #DT::dataTableOutput(ns('study_table'))
-          ),
-          shiny::actionButton(inputId='back_to_portal', label="Back to the NF Data Portal", 
-                              icon = icon("map-marker-alt"), lib = "font-awesome",
-                              class="btn btn-primary btn-lg btn-block",
-                              onclick ="window.open('https://nf.synapse.org/', '_blank')")
+          )
+          # shiny::actionButton(
+          #   inputId ='back_to_portal', 
+          #   label="Back to the NF Data Portal", 
+          #   icon = shiny::icon("map-marker-alt"),
+          #   lib = "font-awesome",
+          #   class ="btn btn-primary btn-lg btn-block",
+          #   onclick ="window.open('https://nf.synapse.org/', '_blank')"
+          # )
           
         ))))
 }
@@ -92,28 +96,8 @@ mod_about_page_server <- function(input, output, session, syn, data_config){
     )
   })
   
-  groups_allowed <- shiny::reactive({
-    req(syn, data_config, current_user_synapse_id())
-    get_allowed_groups_from_synapse_user_id(
-      syn, data_config, current_user_synapse_id()
-    ) 
-  })
-  
-  output$group_selection_ui <- shiny::renderUI({
-    shiny::req(groups_allowed())
-    shiny::selectizeInput(
-      ns("selected_group"), 
-      label = "", 
-      choices = groups_allowed(),
-      multiple = F
-    )
-  })
-  
   output$group <- shiny::renderText({
-    txt <- glue::glue(
-      "You are now viewing studies funded by {input$selected_group}. 
-    Navigate to the tabs at the top of the page to get more information about the participating investigators and the various resources that they have generated."
-    )
+    txt <- "Navigate to the tabs at the top of the page to get more information about the participating investigators and the various resources that they have generated."
     waiter::waiter_hide()
     txt
   })
@@ -127,19 +111,19 @@ mod_about_page_server <- function(input, output, session, syn, data_config){
       purrr::map(format_date_columns)
   })
 
-  filtered_tables <- shiny::reactive({
-    shiny::req(tables(), input$selected_group)
-    purrr::map(
-      tables(),
-      filter_list_column,
-      data_config$team_filter_column,
-      input$selected_group
-    )
-  })
+  # filtered_tables <- shiny::reactive({
+  #   shiny::req(tables(), input$selected_group)
+  #   purrr::map(
+  #     tables(),
+  #     filter_list_column,
+  #     data_config$team_filter_column,
+  #     input$selected_group
+  #   )
+  # })
 
   group_object <- shiny::reactive({
-    shiny::req(filtered_tables(), input$selected_group)
-    c("selected_group" = input$selected_group, filtered_tables())
+    shiny::req(tables())
+    c(tables())
   })
 
 }
