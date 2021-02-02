@@ -77,22 +77,17 @@ mod_about_page_server <- function(input, output, session, syn, data_config){
     txt
   })
   
-  tables <- shiny::reactive({
+  data <- shiny::reactive({
     shiny::req(syn, data_config)
-    synapse_ids <- data_config %>%
+    tables <- data_config %>%
       purrr::pluck("data_files") %>%
       purrr::map_chr("synapse_id") %>%
       purrr::map(read_rds_file_from_synapse, syn) %>%
       purrr::map(format_date_columns)
-  })
-
-  data <- shiny::reactive({
-    shiny::req(tables())
     list(
-      "tables" = tables()
+      "tables" = tables
     ) 
   })
-
 }
     
 ## To be copied in the UI
