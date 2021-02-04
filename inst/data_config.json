@@ -1,53 +1,52 @@
 {
   "data_files": {
-    "files": {
+    "files_table": {
       "synapse_id": "syn24172462"
     },
-    "datasets": {
+    "datasets_table": {
       "synapse_id": "syn24173640"
     },
-    "publications": {
+    "publications_table": {
       "synapse_id": "syn24172464"
     },
-    "studies": {
+    "studies_table": {
       "synapse_id": "syn24172465"
     },
-    "tools": {
+    "tools_table": {
       "synapse_id": "syn24172466"
     }
   },
   "modules": {
     "summary_snapshot": {
       "outputs": {
-        "header_text": "Please hover your cursor over the plots to view more information. You can also zoom into parts of the plot.",
         "overview_boxes": {
           "box1": {
             "title": "Studies",
-            "table": "studies",
+            "table": "studies_table",
             "columns": ["grantId"],
             "icon": "university"
           },
           "box2": {
             "title": "Files",
-            "table": "files",
+            "table": "files_table",
             "columns": ["id"],
             "icon": "file"
           },
           "box3": {
             "title": "Datasets",
-            "table": "datasets",
+            "table": "datasets_table",
             "columns": ["datasetId"],
             "icon": "file"
           },
           "box4": {
             "title": "Publications",
-            "table": "publications",
+            "table": "publications_table",
             "columns": ["publicationId"],
             "icon": "pencil"
           }
         },
-        "initiative_activity": {
-          "table": "files",
+        "consortium_activity": {
+          "table": "files_table",
           "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
           "columns": [
             {
@@ -56,46 +55,30 @@
               "type": "integer"
             },
             {
-              "name": "experimentalStrategy",
-              "display_name": "Experimental Strategy",
-              "type": "list:character"
-            },
-            {
               "name": "consortium",
               "display_name": "Consortium",
-              "na_replace": "Not Applicable"
+              "na_replace": "Not Applicable",
+              "type": "list:character"
             },
             {
               "name": "accessType",
               "display_name": "Access Type",
               "na_replace": "NOT ANNOTATED",
               "type": "character"
-            },
-             {
-              "name": "tumorType",
-              "display_name": "Manifestation",
-              "na_replace": "NOT ANNOTATED",
-              "type": "list:character",
-              "truncate": 40
             }
           ],
           "plot": {
             "x": "Consortium",
-            "fill": "Manifestation",
+            "fill": "Access Type",
             "facet": "Year"
           },
           "tooltips": ["count", "fill"]
         },
         "resources_generated": {
-          "table": "files",
+          "table": "files_table",
           "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
           "columns": [
             {
-              "name": "gender",
-              "display_name": "Gender",
-              "type": "list:character"
-            },
-             {
               "name": "year",
               "display_name": "Year",
               "type": "integer"
@@ -107,34 +90,34 @@
               "na_replace": "Not Applicable"
             },
             {
-              "name": "experimentalStrategy",
-              "display_name": "Experimental Strategy",
+              "name": "Theme",
+              "display_name": "Theme",
               "type": "list:character"
             }
           ],
           "plot": {
-            "x": "Grant Name",
-            "fill": "Experimental Strategy",
-            "facet": "Gender"
+            "x": "Theme",
+            "fill": "Grant Name",
+            "facet": "Year"
           },
           "tooltips": ["count", "fill"]
         },
         "file_upload_timeline":{
           "empty_table_message": "The studies have not uploaded any files yet. Please check back later.",
-          "table": "files",
+          "table": "files_table",
           "filter_column": "consortium",
           "columns": [
             {
               "name": "grantName",
               "display_name": "Grant Name",
               "type": "list:character",
-              "na_replace": "pendingAnnotation",
-              "truncate": 40
+              "na_replace": "pendingAnnotation"
             },
             {
-              "name": "experimentalStrategy",
-              "display_name": "Experimental Strategy",
-              "type": "list:character"
+              "name": "assay",
+              "display_name": "Assay",
+              "type": "list:character",
+              "na_replace": "pendingAnnotation"
             },
             {
               "name": "year",
@@ -145,7 +128,7 @@
           "plot": {
             "x": "Grant Name",
             "y": "Count",
-            "fill": "Experimental Strategy",
+            "fill": "Assay",
             "facet": "Year"
           },
           "tooltips": ["Count", "fill"]

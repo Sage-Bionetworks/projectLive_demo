@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.3",
+    "Version": "4.0.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -13,7 +13,7 @@
     ]
   },
   "Bioconductor": {
-    "Version": "3.12"
+    "Version": "3.10"
   },
   "Packages": {
     "BH": {
@@ -660,18 +660,6 @@
       "Repository": "CRAN",
       "Hash": "14dc9f7a3c91ebb14ec5bb9208a07061"
     },
-    "projectlive.modules": {
-      "Package": "projectlive.modules",
-      "Version": "0.1.4",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteUsername": "Sage-Bionetworks",
-      "RemoteRepo": "projectlive.modules",
-      "RemoteRef": "main",
-      "RemoteSha": "3f365b50aa0022aca05eece6c0b6b67cf0f96337",
-      "RemoteHost": "api.github.com",
-      "Hash": "a62d0ba20bbb6abd69cdea12ee0f69ba"
-    },
     "promises": {
       "Package": "promises",
       "Version": "1.1.1",
@@ -744,10 +732,10 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.12.5",
+      "Version": "0.11.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5c0cdb37f063c58cdab3c7e9fbb8bd2c"
+      "Hash": "1c3ef87cbb81c23ac96797781ec7aecc"
     },
     "reprex": {
       "Package": "reprex",

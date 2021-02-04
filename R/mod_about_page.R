@@ -13,8 +13,6 @@
 #' @keywords internal
 #' @export 
 #' @importFrom shiny NS tagList 
-#' 
-
 mod_about_page_ui <- function(id){
   ns <- shiny::NS(id)
   shiny::tagList(
@@ -35,24 +33,39 @@ mod_about_page_ui <- function(id){
           # </script>
           # "),
           #includeScript("www/google_analytics.js")),
+          
+          # box(title = "About",
+          #     width = 12,
+          #     solidHeader = T,
+          #     status = "primary",
+          #     shiny::htmlOutput(ns('about'))
+          #     #DT::dataTableOutput(ns('study_table'))
+          # ),
+          
+          # box(title = "About",
+          #     status = "primary",
+          #     solidHeader = F,
+          #     width = 12,
+          #     collapsible = FALSE,
           shinydashboard::infoBoxOutput(ns('about'), width = 12),
           shinydashboard::box(
             title = "Funding Partner",
             width = 12,
             solidHeader = T,
             status = "primary",
+            # shiny::uiOutput(ns("group_selection_ui")),
             shiny::textOutput(ns('group'))
-          ),
-          shinydashboard::box(
-            title = "Overview",
-            status = "primary",
-            solidHeader = TRUE,
-            width = 12,
-            collapsible = FALSE,
-            flexdashboard::gaugeOutput(ns('plt1'), 
-                                         width = "100%",
-                                         height = "200px"))
-            
+            #DT::dataTableOutput(ns('study_table'))
+          )
+          # shiny::actionButton(
+          #   inputId ='back_to_portal', 
+          #   label="Back to the NF Data Portal", 
+          #   icon = shiny::icon("map-marker-alt"),
+          #   lib = "font-awesome",
+          #   class ="btn btn-primary btn-lg btn-block",
+          #   onclick ="window.open('https://nf.synapse.org/', '_blank')"
+          # )
+          
         ))))
 }
     
@@ -89,30 +102,28 @@ mod_about_page_server <- function(input, output, session, syn, data_config){
     txt
   })
   
-  data <- shiny::reactive({
+  tables <- shiny::reactive({
     shiny::req(syn, data_config)
-    tables <- data_config %>%
+    synapse_ids <- data_config %>%
       purrr::pluck("data_files") %>%
       purrr::map_chr("synapse_id") %>%
       purrr::map(read_rds_file_from_synapse, syn) %>%
       purrr::map(format_date_columns)
-    list(
-      "tables" = tables
-    ) 
   })
-  
-   output$plt1 <- flexdashboard::renderGauge({
-     flexdashboard::gauge(70, min = 0, max = 100, 
-                          symbol = '%', 
-                          label = paste("Data Deposited"),
-                          flexdashboard::gaugeSectors(success = c(61, 100), 
-                                                      warning = c(21,60), 
-                                                      danger = c(0, 20), 
-                                                      colors = c("success", 
-                                                                 "warning", 
-                                                                 "danger")
-     ))
 
+  # filtered_tables <- shiny::reactive({
+  #   shiny::req(tables(), input$selected_group)
+  #   purrr::map(
+  #     tables(),
+  #     filter_list_column,
+  #     data_config$team_filter_column,
+  #     input$selected_group
+  #   )
+  # })
+
+  group_object <- shiny::reactive({
+    shiny::req(tables())
+    c(tables())
   })
 
 }
