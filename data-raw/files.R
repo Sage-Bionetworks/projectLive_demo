@@ -3,7 +3,8 @@ devtools::load_all()
 syn <- create_synapse_login()
 files <- get_synapse_tbl(syn, "syn9630847") %>% 
   dplyr::select(
-    "id", "createdOn", "dataset", "assay", "Theme", "consortium", "grantName"
+    "id", "createdOn", "dataset", "assay", "Theme", "consortium", "grantName",
+    "experimentalStrategy", "gender", "tumorType"
   ) %>% 
   dplyr::mutate(
     "accessType" = "PUBLIC"
