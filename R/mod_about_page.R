@@ -13,6 +13,8 @@
 #' @keywords internal
 #' @export 
 #' @importFrom shiny NS tagList 
+#' 
+
 mod_about_page_ui <- function(id){
   ns <- shiny::NS(id)
   shiny::tagList(
@@ -40,7 +42,17 @@ mod_about_page_ui <- function(id){
             solidHeader = T,
             status = "primary",
             shiny::textOutput(ns('group'))
-          )
+          ),
+          shinydashboard::box(
+            title = "Overview",
+            status = "primary",
+            solidHeader = TRUE,
+            width = 12,
+            collapsible = FALSE,
+            flexdashboard::gaugeOutput(ns('plt1'), 
+                                         width = "100%",
+                                         height = "200px"))
+            
         ))))
 }
     
@@ -88,6 +100,21 @@ mod_about_page_server <- function(input, output, session, syn, data_config){
       "tables" = tables
     ) 
   })
+  
+   output$plt1 <- flexdashboard::renderGauge({
+     flexdashboard::gauge(70, min = 0, max = 100, 
+                          symbol = '%', 
+                          label = paste("Data Deposited"),
+                          flexdashboard::gaugeSectors(success = c(61, 100), 
+                                                      warning = c(21,60), 
+                                                      danger = c(0, 20), 
+                                                      colors = c("success", 
+                                                                 "warning", 
+                                                                 "danger")
+     ))
+
+  })
+
 }
     
 ## To be copied in the UI

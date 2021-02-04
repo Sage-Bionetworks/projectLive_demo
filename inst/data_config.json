@@ -56,6 +56,11 @@
               "type": "integer"
             },
             {
+              "name": "experimentalStrategy",
+              "display_name": "Experimental Strategy",
+              "type": "list:character"
+            },
+            {
               "name": "consortium",
               "display_name": "Consortium",
               "na_replace": "Not Applicable"
@@ -65,11 +70,18 @@
               "display_name": "Access Type",
               "na_replace": "NOT ANNOTATED",
               "type": "character"
+            },
+             {
+              "name": "tumorType",
+              "display_name": "Manifestation",
+              "na_replace": "NOT ANNOTATED",
+              "type": "list:character",
+              "truncate": 40
             }
           ],
           "plot": {
             "x": "Consortium",
-            "fill": "Access Type",
+            "fill": "Manifestation",
             "facet": "Year"
           },
           "tooltips": ["count", "fill"]
@@ -79,6 +91,11 @@
           "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
           "columns": [
             {
+              "name": "gender",
+              "display_name": "Gender",
+              "type": "list:character"
+            },
+             {
               "name": "year",
               "display_name": "Year",
               "type": "integer"
@@ -90,15 +107,15 @@
               "na_replace": "Not Applicable"
             },
             {
-              "name": "Theme",
-              "display_name": "Theme",
+              "name": "experimentalStrategy",
+              "display_name": "Experimental Strategy",
               "type": "list:character"
             }
           ],
           "plot": {
-            "x": "Theme",
-            "fill": "Grant Name",
-            "facet": "Year"
+            "x": "Grant Name",
+            "fill": "Experimental Strategy",
+            "facet": "Gender"
           },
           "tooltips": ["count", "fill"]
         },
@@ -115,10 +132,9 @@
               "truncate": 40
             },
             {
-              "name": "assay",
-              "display_name": "Assay",
-              "type": "list:character",
-              "na_replace": "pendingAnnotation"
+              "name": "experimentalStrategy",
+              "display_name": "Experimental Strategy",
+              "type": "list:character"
             },
             {
               "name": "year",
@@ -129,7 +145,7 @@
           "plot": {
             "x": "Grant Name",
             "y": "Count",
-            "fill": "Assay",
+            "fill": "Experimental Strategy",
             "facet": "Year"
           },
           "tooltips": ["Count", "fill"]
