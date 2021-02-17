@@ -662,15 +662,15 @@
     },
     "projectlive.modules": {
       "Package": "projectlive.modules",
-      "Version": "0.1.4",
+      "Version": "0.1.8",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "Sage-Bionetworks",
       "RemoteRepo": "projectlive.modules",
       "RemoteRef": "main",
-      "RemoteSha": "3f365b50aa0022aca05eece6c0b6b67cf0f96337",
+      "RemoteSha": "7a4a6325f547f255ec15f34f4c8d1d4eac74ef9c",
       "RemoteHost": "api.github.com",
-      "Hash": "a62d0ba20bbb6abd69cdea12ee0f69ba"
+      "Hash": "6f40316d2399a5c9fa1685df317cfe6d"
     },
     "promises": {
       "Package": "promises",
