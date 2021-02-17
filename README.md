@@ -9,6 +9,6 @@ This is the original branch with the V1.0 of projectLive in NF.
 - The branch should stay live until the demo is complete 
 - The branch Readme should clearly state the scope of the demo app, name of the person who requested the demo, and any other salient details.
 
-### demo_INCLUDE
+### demo_INCLUDE_new
 - Scope : snapshot module using CSBC style portal tables
 - Requested by Julie Bletz
