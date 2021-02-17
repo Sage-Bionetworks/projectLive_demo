@@ -20,9 +20,13 @@ files <-
       "id",
       "assay",
       "diagnosis",
+      "tumorType",
+      "species",
       "grantName",
       "createdOn",
-      "consortium"
+      "consortium",
+      "organ",
+      "experimentalStrategy"
     )
   ) %>%
   format_date_columns() %>%
