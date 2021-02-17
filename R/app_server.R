@@ -42,5 +42,11 @@ app_server <- function(input, output,session) {
       config = shiny::reactive(config$modules$summary_snapshot$outputs)
     )
     
+    projectlive.modules::study_summary_module_server(
+      id = "study_summary_ui_1",
+      data = data,
+      config = shiny::reactive(config$modules$study_summary$outputs)
+    )
+    
   })
 }

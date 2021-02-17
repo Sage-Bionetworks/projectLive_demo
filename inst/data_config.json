@@ -24,25 +24,33 @@
           "box1": {
             "title": "Studies",
             "table": "studies",
-            "columns": ["grantId"],
+            "columns": [
+              "grantId"
+            ],
             "icon": "university"
           },
           "box2": {
             "title": "Files",
             "table": "files",
-            "columns": ["id"],
+            "columns": [
+              "id"
+            ],
             "icon": "file"
           },
           "box3": {
             "title": "Datasets",
             "table": "datasets",
-            "columns": ["datasetId"],
+            "columns": [
+              "datasetId"
+            ],
             "icon": "file"
           },
           "box4": {
             "title": "Publications",
             "table": "publications",
-            "columns": ["publicationId"],
+            "columns": [
+              "publicationId"
+            ],
             "icon": "pencil"
           }
         },
@@ -72,7 +80,10 @@
             "fill": "Access Type",
             "facet": "Year"
           },
-          "tooltips": ["count", "fill"]
+          "tooltips": [
+            "count",
+            "fill"
+          ]
         },
         "resources_generated": {
           "table": "files",
@@ -100,9 +111,12 @@
             "fill": "Grant Name",
             "facet": "Year"
           },
-          "tooltips": ["count", "fill"]
+          "tooltips": [
+            "count",
+            "fill"
+          ]
         },
-        "file_upload_timeline":{
+        "file_upload_timeline": {
           "empty_table_message": "The studies have not uploaded any files yet. Please check back later.",
           "table": "files",
           "filter_column": "consortium",
@@ -123,7 +137,7 @@
             {
               "name": "year",
               "type": "integer",
-              "display_name": "Year" 
+              "display_name": "Year"
             }
           ],
           "plot": {
@@ -132,7 +146,223 @@
             "fill": "Assay",
             "facet": "Year"
           },
-          "tooltips": ["Count", "fill"]
+          "tooltips": [
+            "Count",
+            "fill"
+          ]
+        }
+      }
+    },
+    "study_summary": {
+      "outputs": {
+        "header_text": "Please hover your cursor over the plots to view more information. You can also zoom into parts of the plot.",
+        "study_table": {
+          "join_column": "grantName",
+          "tables": {
+            "studies": {
+              "columns": [
+                "grantName",
+                "consortium"
+              ]
+            },
+            "files": {
+              "columns": [
+                "grantName",
+                "assay",
+                "id"
+              ]
+            },
+            "tools": {
+              "columns": [
+                "grantName",
+                "toolName"
+              ]
+            },
+            "merged": {
+              "columns": [
+                {
+                  "display_name": "Grant Name",
+                  "name": "grantName"
+                },
+                {
+                  "display_name": "Consortium",
+                  "name": "consortium"
+                },
+                {
+                  "display_name": "Assays",
+                  "name": "assay"
+                },
+                {
+                  "display_name": "Files",
+                  "name": "id"
+                },
+                {
+                  "display_name": "Tools",
+                  "name": "toolName"
+                }
+              ]
+            }
+          }
+        },
+        "study_name_column": "Grant Name",
+        "study_summary": {
+          "table": "studies",
+          "filter_column": "grantName",
+          "columns": [
+            {
+              "name": "grantId",
+              "type": "character",
+              "display_name": "Unique Study ID"
+            }
+          ]
+        },
+        "study_timeline_plot": {
+          "table": "files",
+          "filter_column": "grantName",
+          "columns": [
+            {
+              "name": "grantName",
+              "display_name": "Grant Name",
+              "type": "character"
+            },
+            {
+              "name": "assay",
+              "display_name": "Assay",
+              "type": "character",
+              "na_replace": "Not Annotated"
+            },
+            {
+              "name": "year",
+              "display_name": "Year",
+              "type": "integer"
+            },
+            {
+              "name": "month",
+              "display_name": "Month",
+              "type": "factor"
+            }
+          ],
+          "plot": {
+            "x": "Grant Name",
+            "fill": "Assay",
+            "facet": [
+              "Year",
+              "Month"
+            ]
+          },
+          "tooltips": [
+            "count",
+            "fill"
+          ],
+          "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later."
+        },
+        "data_focus_plot": {
+          "table": "files",
+          "filter_column": "grantName",
+          "columns": [
+            {
+              "name": "grantName",
+              "display_name": "Study Name",
+              "type": "character"
+            },
+            {
+              "name": "assay",
+              "display_name": "Assays Used",
+              "type": "character",
+              "na_replace": "Not Annotated"
+            },
+            {
+              "name": "diagnosis",
+              "display_name": "Diagnosis",
+              "type": "character",
+              "na_replace": "Not Annotated"
+            },
+            {
+              "name": "species",
+              "display_name": "Species",
+              "type": "character",
+              "na_replace": "Not Annotated"
+            },
+            {
+              "name": "tumorType",
+              "display_name": "Tumor Type",
+              "type": "character",
+              "na_replace": "Not Annotated"
+            }
+          ],
+          "plot": {
+            "x": "Study Name",
+            "fill": [
+              "Assays Used",
+              "Diagnosis",
+              "Species",
+              "Tumor Type"
+            ]
+          },
+          "tooltips": [
+            "count",
+            "fill"
+          ],
+          "empty_table_message": "The investigators have not uploaded data for this study yet. Please check back later."
+        },
+        "annotation_activity_plot": {
+          "table": "files",
+          "filter_column": "grantName",
+          "columns": [
+            {
+              "name": "consortium",
+              "display_name": "Consortium",
+              "type": "character",
+              "na_replace": "pendingAnnotation"
+            },
+            {
+              "name": "assay",
+              "display_name": "Assay",
+              "type": "character",
+              "na_replace": "pendingAnnotation"
+            },
+            {
+              "name": "year",
+              "display_name": "Year",
+              "type": "integer"
+            }
+          ],
+          "plot": {
+            "x": "Consortium",
+            "y": "Count",
+            "fill": "Assay",
+            "facet": "Year"
+          },
+          "empty_table_message": "The investigators have not uploaded any files yet. Please check back later.",
+          "tooltips": [
+            "Count",
+            "fill"
+          ]
+        },
+        "publication_status_plot": {
+          "table": "publications",
+          "filter_column": "grantName",
+          "columns": [
+            {
+              "name": "publicationYear",
+              "display_name": "Year",
+              "type": "integer"
+            },
+            {
+              "name": "grantName",
+              "display_name": "Grant Name",
+              "type": "character"
+            }
+          ],
+          "plot": {
+            "x": "Year",
+            "fill": "Grant Name"
+          },
+          "empty_table_message": "This study has no associated publications yet.",
+          "tooltips": [
+            "count",
+            "fill"
+          ]
         }
       }
     }
