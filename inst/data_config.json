@@ -90,7 +90,7 @@
               "na_replace": "Not Applicable"
             },
             {
-              "name": "Theme",
+              "name": "theme",
               "display_name": "Theme",
               "type": "list:character"
             }
