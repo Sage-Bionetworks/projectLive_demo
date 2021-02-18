@@ -32,7 +32,7 @@ files <-
   format_date_columns() %>%
   dplyr::select(-c("createdOn", "ROW_ID", "ROW_VERSION", "ROW_ETAG")) %>%
   dplyr::mutate( "accessType" = "PUBLIC") %>% 
-  dplyr::left_join(studies, by = "grantName")
+  dplyr::inner_join(studies, by = "grantName")
   
 saveRDS(files, "files.RDS")
 store_file_in_synapse(
