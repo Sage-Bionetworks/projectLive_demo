@@ -87,6 +87,7 @@
         },
         "resources_generated": {
           "table": "files",
+          "drop_na": true,
           "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
           "columns": [
             {
