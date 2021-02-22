@@ -1,0 +1,40 @@
+{
+    "header_text": "Please hover your cursor over the plots to view more information. You can also zoom into parts of the plot.",
+  "publication_status": {
+      "table": "publications",
+      "columns": [
+        {
+          "name": "publicationYear",
+          "display_name": "Year"
+        },
+        {
+          "name": "grantName",
+          "display_name": "Grant Name"
+        }
+      ],
+      "plot": {
+        "x": "Year",
+        "fill": "Grant Name"
+      },
+      "tooltips": ["count", "fill"]
+    },
+  "publication_disease": {
+      "table": "publications",
+      "columns": [
+        {
+          "name": "publicationYear",
+          "display_name": "Year"
+        },
+        {
+          "name": "tissue",
+          "display_name": "Tissue",
+          "recode": {"na_replace": "None Listed"}
+        }
+      ],
+      "plot": {
+        "x": "Year",
+        "fill": "Tissue"
+      },
+      "tooltips": ["count", "fill"]
+    }
+}
