@@ -56,6 +56,7 @@
     "table": "files",
     "empty_table_message": "The investigator/investigators has/have not uploaded any files yet. Please check back later.",
     "drop_na": true,
+    "unlist_columns": ["theme"],
     "columns": [
       {
         "name": "year",
@@ -85,6 +86,10 @@
     "empty_table_message": "The studies have not uploaded any files yet. Please check back later.",
     "table": "files",
     "filter_column": "consortium",
+    "count_column": {
+      "name": "Count",
+      "complete_columns": ["grantName", "year"]
+    },
     "columns": [
       {
         "name": "grantName",

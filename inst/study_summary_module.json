@@ -2,6 +2,7 @@
   "header_text": "Please hover your cursor over the plots to view more information. You can also zoom into parts of the plot.",
   "study_table": {
     "join_column": "grantName",
+    "filter_column": "consortium",
     "tables": {
       "studies": {
         "columns": [
@@ -128,6 +129,10 @@
   "annotation_activity_plot": {
     "table": "files",
     "filter_column": "grantName",
+    "count_column": {
+      "name": "Count",
+      "complete_columns": ["consortium", "year"]
+    },
     "columns": [
       {
         "name": "consortium",
