@@ -10,11 +10,15 @@
         {
           "name": "grantName",
           "display_name": "Grant Name"
+        },
+        {
+          "name": "theme",
+          "display_name": "Theme"
         }
       ],
       "plot": {
         "x": "Year",
-        "fill": "Grant Name"
+        "fill": "Theme"
       },
       "tooltips": ["count", "fill"]
     },
