@@ -35,6 +35,15 @@
         "display_name": "Year"
       },
       {
+        "name": "tumorType",
+        "display_name": "TumorType",
+        "recode": {
+          "top_values": 5,
+          "na_replace": "Missing",
+          "default_replace": "Other"
+        }
+      },
+      {
         "name": "consortium",
         "display_name": "Consortium",
         "recode": {"na_replace": "Not Applicable"}
@@ -48,7 +57,7 @@
     "plot": {
       "x": "Consortium",
       "fill": "Access Type",
-      "facet": "Year"
+      "facet": "TumorType"
     },
     "tooltips": [ "count", "fill"]
   },
