@@ -28,7 +28,8 @@
         {
           "name": "tissue",
           "display_name": "Tissue",
-          "recode": {"na_replace": "Unspecified"}
+          "recode": {"na_replace": "Unspecified"},
+          "truncate": 40
         }
       ],
       "plot": {
