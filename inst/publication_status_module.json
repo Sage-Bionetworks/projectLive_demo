@@ -2,6 +2,7 @@
     "header_text": "Please hover your cursor over the plots to view more information. You can also zoom into parts of the plot.",
   "publication_status": {
       "table": "publications",
+      "unlist_columns": ["theme"],
       "columns": [
         {
           "name": "publicationYear",
@@ -17,13 +18,14 @@
         }
       ],
       "plot": {
-        "x": "Year",
-        "fill": "Theme"
+        "x": "Theme",
+        "fill": "Grant Name"
       },
       "tooltips": ["count", "fill"]
     },
   "publication_disease": {
       "table": "publications",
+      "drop_na": true,
       "columns": [
         {
           "name": "publicationYear",
@@ -32,7 +34,6 @@
         {
           "name": "tissue",
           "display_name": "Tissue",
-          "recode": {"na_replace": "Unspecified"},
           "truncate": 40
         }
       ],
